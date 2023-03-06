@@ -11,13 +11,14 @@ const minutesEl = document.querySelector('[data-minutes]');
 const secondsEl = document.querySelector('[data-seconds]');
 
 btnStart.setAttribute('disabled', true);
+let yearDate, monthDate, dayDate, hourDate, minutesDate;
 const options = {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-      dateChoosen = inputDate.value;
+      const dateChoosen = inputDate.value;
       yearDate = Number(dateChoosen[0] +dateChoosen[1]+dateChoosen[2]+dateChoosen[3]);
       monthDate = Number(dateChoosen[5] +dateChoosen[6]);
       dayDate =  Number(dateChoosen[8]+dateChoosen[9]);
@@ -64,10 +65,10 @@ btnStart.addEventListener('click', ()=>{
                 const newValue = `${value}`.padStart(2, 0);
                 return newValue;
             }
-            days = addLeadingZero(convertMs(timeBetween).days);
-            hours = addLeadingZero(convertMs(timeBetween).hours);
-            minutes = addLeadingZero(convertMs(timeBetween).minutes);
-            seconds = addLeadingZero(convertMs(timeBetween).seconds);
+            const days = addLeadingZero(convertMs(timeBetween).days);
+            const hours = addLeadingZero(convertMs(timeBetween).hours);
+            const minutes = addLeadingZero(convertMs(timeBetween).minutes);
+            const seconds = addLeadingZero(convertMs(timeBetween).seconds);
             daysEl.textContent = days;
             hoursEl.textContent = hours;
             minutesEl.textContent = minutes;
