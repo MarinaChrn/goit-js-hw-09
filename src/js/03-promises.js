@@ -7,15 +7,15 @@ const amountEl = document.querySelector('[name="amount"]');
 const btnSubmitEl = document.querySelector('[type="submit"]');
 const formEl = document.querySelector('form');
 
-let position, delay;
+let position, delay, firstDelay;
 let posDel ={};
 formEl.addEventListener('submit', function(e) {
   e.preventDefault();
-  delay = Number(firstDelayEl.value);
+  firstDelay = Number(firstDelayEl.value);
   const step = Number(stepEl.value);
   const amount = Number(amountEl.value);
   for (let i = 0; i < amount; i += 1) {
-    delay = delay+step*i;
+    delay = firstDelay+step*i;
     position = i+1;
     posDel = {position, delay};
     doPromise(posDel);
