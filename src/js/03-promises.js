@@ -18,7 +18,7 @@ formEl.addEventListener('submit', function(e) {
     delay = firstDelay+step*i;
     position = i+1;
     posDel = {position, delay};
-    doPromise(posDel);
+    const timer = setTimeout(doPromise(posDel), delay);
   };
 });
 
@@ -32,7 +32,6 @@ function createPromise({position, delay}) {
 }
 
 const doPromise = (posDel) => {
-  const timer = setTimeout(()=>{
     createPromise(posDel)
     .then(({ position, delay }) => {
       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -40,6 +39,40 @@ const doPromise = (posDel) => {
     .catch(({ position, delay }) => {
       Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     });
-  }, {delay})
 };
 
+// let position, delay, firstDelay;
+// let posDel ={};
+// formEl.addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   firstDelay = Number(firstDelayEl.value);
+//   const step = Number(stepEl.value);
+//   const amount = Number(amountEl.value);
+//   for (let i = 0; i < amount; i += 1) {
+//     delay = firstDelay+step*i;
+//     position = i+1;
+//     posDel = {position, delay};
+//     doPromise(posDel);
+//   };
+// });
+
+// function createPromise({position, delay}) {
+//   const shouldResolve = Math.random() > 0.3;
+//   if (shouldResolve) {
+//     return Promise.resolve({position, delay});
+//   } else {
+//     return Promise.reject({position, delay});
+//   }
+// }
+
+// const doPromise = (posDel) => {
+//   const timer = setTimeout(()=>{
+//     createPromise(posDel)
+//     .then(({ position, delay }) => {
+//       Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+//     })
+//     .catch(({ position, delay }) => {
+//       Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+//     });
+//   }, {delay})
+// };
