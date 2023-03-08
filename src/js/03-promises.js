@@ -18,6 +18,7 @@ formEl.addEventListener('submit', function(e) {
   for (let i = 0; i < amount; i += 1) {
     setTimeout(function(){
       position = i+1;
+      delay = firstDelay+step*i;
       posDel = {position, delay};
       doPromise(posDel);
     },firstDelay+step*i);
